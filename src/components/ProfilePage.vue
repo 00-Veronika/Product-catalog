@@ -1,165 +1,188 @@
 <template>
-  <nav class="navbar">
-        <ul>
-            <li>
-                <router-link to="/product">Home</router-link>
-            </li>
-            <li>
-                <router-link to="/new-products">New Products</router-link>
-            </li> 
-            <li>
-                <router-link to="/promotions">Promotions</router-link>
-            </li>
-            <li>
-                <router-link to="/cart">Cart</router-link>
-            </li>
-            <li>
-                <router-link to="/profile">Profile</router-link>
-            </li>
-        </ul>
-    </nav>
+  <div class="profile-grid">
+    <div class="profile-container">
+      <img class="profile-image" src="@/assets/img.jpg" alt="Profile Picture" />
+      <h1>Veronika Peneva</h1>
+      <p class="subtitle">Graphic designer | Web designer | A keen eye for detail</p>
+      <h2> Personal Information </h2>
+      <p>
+        <strong> Email:</strong> stu2101681046@uni-plovdiv.bg
+      </p>
+      <p>
+        <strong> Location:</strong> Plovdiv, Bulgaria
+      </p>
 
-    <div class="profile-page">
-      <div class="profile-header">
-        <div class="profile-img-container">
-          <img src="@/assets/roni.jpg" alt="Profile Picture" class="profile-img" />
-        </div>
-        <div class="profile-info">
-          <h1 class="profile-name">John Doe</h1>
-          <p class="profile-bio">Web Developer | Passionate about coding and technology | Loves traveling and photography</p>
-        </div>
-      </div>
-      
-      <div class="profile-content">
-        <div class="profile-section">
-          <h2>Personal Information</h2>
-          <p><strong>Email:</strong> stu2101681046"uni-plovdiv.bg</p>
-          <p><strong>Location:</strong> Plovdiv, Bulgaria</p>
-        </div>
-        
-        <div class="profile-section">
-          <h2>Skills</h2>
-          <ul>
-            <li>JavaScript</li>
-            <li>Vue.js</li>
-            <li>HTML & CSS</li>
-            <li>Node.js</li>
-            <li>Python</li>
-          </ul>
-        </div>
-        
-        <div class="profile-section">
-          <h2>Projects</h2>
-          <ul>
-            <li>Project 1: E-commerce website</li>
-            <li>Project 2: Portfolio website</li>
-            <li>Project 3: Blog platform</li>
-          </ul>
-        </div>
-      </div>
-      
-      <div class="profile-footer">
-        <button @click="editProfile">Edit Profile</button>
-      </div>
+      <h2> Skills </h2>
+      <ul class="no-bullets">
+        <li>JavaScript</li>
+        <li>Vue.js</li>
+        <li>HTML & CSS</li>
+        <li>Node.js</li>
+        <li>Adobe Photoshop</li>
+        <li>Adobe Illustrator</li>
+        <li>Adobe InDesign</li>
+        <li>Figma</li>
+      </ul>
+
+      <button class="edit-button">Read more</button>
     </div>
-  </template>
-  
-  <script>
-  export default {
-    name: 'ProfilePage',
-    methods: {
-      editProfile() {
-        alert('Edit profile feature coming soon!');
-      }
-    }
+
+    <div class="profile-container">
+      <div class="about-me-container">
+        <h2>About Me</h2>
+        <p>
+          I am a certified Graphic Designer and a Freelance professional, with extensive experience in the field. I have completed my Graphic Design studies and continue to grow through practical work. Currently, I am also pursuing a qualification to become a teacher in Information Technology and Informatics.
+        </p>
+        <div class="skills">
+          <h3>🎨 My passion lies in creating compelling and visually appealing designs. I am proficient in:</h3>
+          <ul>
+            <li>Adobe Photoshop</li>
+            <li>Illustrator</li>
+            <li>InDesign</li>
+            <li>Figma</li>
+          </ul>
+        </div>
+        <p>
+          In addition to my design expertise, I have knowledge of HTML and CSS, which enables me to craft well-structured and effective web and mobile application designs.
+        </p>
+        <p>
+          I am eager to apply my skills in new opportunities and to contribute as a Graphic Designer while continuing my professional growth. Committed, hardworking, and driven, I am passionate about evolving within this dynamic industry.
+        </p>
+      </div>
+
+      <h2>Projects</h2>
+      <ul class="no-bullets">
+        <li>
+          <a href="https://www.behance.net/veronika-jordanova" target="_blank" rel="noopener noreferrer">
+            https://www.behance.net/veronika-jordanova
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/00-Veronika" target="_blank" rel="noopener noreferrer">
+            https://github.com/00-Veronika
+          </a>
+        </li>
+      </ul>
+    </div>
+</div>
+</template>
+
+<style>
+.profile-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(2, 1fr); 
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.profile-container {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 800px;
+  margin: 0 auto;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 90%; 
+  margin: auto; 
+}
+
+.profile-image {
+  width: 270px; 
+  height: 270px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #ddd;
+}
+
+.subtitle {
+  color: gray;
+  font-size: 14px;
+}
+
+h2 {
+  margin-top: 20px;
+  font-size: 20px;
+}
+
+.no-bullets {
+  list-style-type: none; 
+  padding: 0;
+}
+
+.edit-button {
+  background: #28a745;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.edit-button:hover {
+  background: #218838; 
+}
+
+.about-me-container {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 800px;
+  margin: 0 auto;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.about-me-container h2 {
+  font-size: 2em;
+  text-align: center;
+  color: #333;
+}
+
+.about-me-container p {
+  font-size: 1.1em;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.skills {
+  background-color: #e9ecef;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.skills h3 {
+  font-size: 1.2em;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.skills ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.skills ul li {
+  font-size: 1.1em;
+  color: #555;
+  margin: 5px 0;
+}
+
+@media (max-width: 768px) {
+  .about-me-container {
+    padding: 15px;
   }
-  </script>
-  
-  <style scoped>
-  .profile-page {
-    max-width: 900px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
+
+  .about-me-container h2 {
+    font-size: 1.8em;
   }
-  
-  .profile-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 30px;
+
+  .skills h3 {
+    font-size: 1.1em;
   }
-  
-  .profile-img-container {
-    width: 150px;
-    height: 150px;
-    overflow: hidden;
-    border-radius: 50%;
-    margin-right: 20px;
-  }
-  
-  .profile-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  .profile-info {
-    flex: 1;
-  }
-  
-  .profile-name {
-    margin: 0;
-    font-size: 2rem;
-    color: #333;
-  }
-  
-  .profile-bio {
-    color: #666;
-  }
-  
-  .profile-content {
-    margin-top: 30px;
-  }
-  
-  .profile-section {
-    margin-bottom: 20px;
-  }
-  
-  .profile-section h2 {
-    font-size: 1.5rem;
-    color: #333;
-    margin-bottom: 10px;
-  }
-  
-  .profile-section p,
-  .profile-section ul {
-    font-size: 1rem;
-    color: #555;
-  }
-  
-  .profile-section ul {
-    list-style-type: disc;
-    padding-left: 20px;
-  }
-  
-  .profile-footer {
-    margin-top: 40px;
-    text-align: center;
-  }
-  
-  .profile-footer button {
-    padding: 10px 20px;
-    background-color: #007BFF;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1rem;
-  }
-  
-  .profile-footer button:hover {
-    background-color: #0056b3;
-  }
-  </style>
-  
+}
+
+</style>
