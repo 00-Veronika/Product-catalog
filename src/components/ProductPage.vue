@@ -5,377 +5,67 @@
     </header>
 
     <div class="product-grid">
-        <section class="product">
-            <div class="product__photo">
-                <div class="photo-container">
-                    <div class="photo-main">
-                        <img src="@/assets/yellow_tshirt.png" alt="woman hat"/>
-                    </div>
-                <div class="photo-album">
-                    <ul>
-                        <li>
-                            <img src="@/assets/green_tshirt.png" alt="green" />
-                        </li>
-                        <li>
-                            <img src="@/assets/yellow_tshirt.png" alt="yellow" />
-                        </li>
-                        <li>
-                            <img src="@/assets/black_tshirt.png" alt="black" />
-                        </li>
-                        <li>
-                            <img src="@/assets/red_tshirt.png" alt="red" />
-                        </li>
-                    </ul>
-                </div>
-                </div>
+        
+        <section v-for="n in 6" :key="n" class="product">
+    <div class="product__photo">
+        <div class="photo-container">
+            <div class="photo-main">
+                <img :src="selectedProduct.image" alt="product image"/>
             </div>
-            <div class="product__info">
-                <div class="title">
-                    <h1>T-shirts</h1>
-                    <span>COD: 455599</span>
-                </div>
-                <div class="price">
-                    <span>9.99$</span>
-                </div>
-                <div class="variant">
-                    <h3>SELECT A COLOR</h3>
-                    <ul>
-                        <li>
-                            <img src="@/assets/green_circle.png" alt="green" />
+            <div class="photo-album">
+                <ul>
+                    <li v-for="(product, index) in products" :key="index">
+                        <h3>{{ product.category }}</h3>
+                        <ul>
+                        <li v-for="(item, idx) in product.items" :key="idx">
+                            <img :src="item.image" :alt="item.color + ' ' + product.category" @click="selectProduct(item)" />
+                            <p>{{ item.color }} - ${{ item.price }}</p>
                         </li>
-                        <li>
-                            <img src="@/assets/red_circle.png" alt="red" />
-                        </li>
-                        <li>
-                            <img src="@/assets/black_circle.png" alt="black" />
-                        </li>
-                        <li>
-                            <img src="@/assets/yellow_circle.png" alt="yellow" />
-                        </li>
-                    </ul>
-                </div>
-                <div class="description">
-                    <h3>BENEFITS</h3>
-                    <ul class="noPoint">
-                        <li>Apples may be good for weight loss</li>
-                        <li>Apples may be good for bone health</li>        
-                        <li>Apples may be good for weight loss</li>
-                        <li>Apples may be good for bone health</li>
-                    </ul>
-                </div>
-                <button class="buy--btn" @click="addToCart(product)">ADD TO CART</button>
+                        </ul>
+                    </li>
+                </ul>
             </div>
-        </section>
+        </div>
+    </div>
+    <div class="product__info">
+        <div class="title">
+            <h1>{{ selectedProduct.name }}</h1>
+            <span>COD: 457777799</span>
+        </div>
+        <div class="price">
+            <span>{{ selectedProduct.price }} $</span>
+        </div>
 
-        <section class="product">
-            <div class="product__photo">
-                <div class="photo-container">
-                    <div class="photo-main">
-                        <img src="@/assets/hat_1.png" alt="woman hat"/>
-                    </div>
-                <div class="photo-album">
-                    <ul>
-                        <li>
-                            <img src="@/assets/hat_2.png" alt="green" />
-                        </li>
-                        <li>
-                            <img src="@/assets/hat_3.png" alt="yellow" />
-                        </li>
-                        <li>
-                            <img src="@/assets/hat_1.png" alt="black" />
-                        </li>
-                        <li>
-                            <img src="@/assets/hat_4.png" alt="red" />
-                        </li>
-                    </ul>
-                </div>
-                </div>
-            </div>
-            <div class="product__info">
-                <div class="title">
-                    <h1>Hats</h1>
-                    <span>COD: 499563599</span>
-                </div>
-                <div class="price">
-                    <span>49.99$</span>
-                </div>
-                <div class="variant">
-                    <h3>SELECT A COLOR</h3>
-                    <ul>
-                        <li>
-                            <img src="@/assets/green_circle.png" alt="green" />
-                        </li>
-                        <li>
-                            <img src="@/assets/red_circle.png" alt="red" />
-                        </li>
-                        <li>
-                            <img src="@/assets/black_circle.png" alt="black" />
-                        </li>
-                        <li>
-                            <img src="@/assets/yellow_circle.png" alt="yellow" />
-                        </li>
-                    </ul>
-                </div>
-                <div class="description">
-                    <h3>BENEFITS</h3>
-                    <ul class="noPoint">
-                        <li>Apples may be good for weight loss</li>
-                        <li>Apples may be good for bone health</li>        
-                        <li>Apples may be good for weight loss</li>
-                        <li>Apples may be good for bone health</li>
-                    </ul>
-                </div>
-                <button class="buy--btn" @click="addToCart(product)">ADD TO CART</button>
-            </div>
-        </section>
+        <div class="variant">
+            <h3>SELECT A COLOR</h3>
+            <ul class="color-options">
+                <li @click="changeColor('color1')">
+                    <img src="@/assets/yellow_circle.png" alt="Color 1" />
+                </li>
+                <li @click="changeColor('color2')">
+                    <img src="@/assets/green_circle.png" alt="Color 2" />
+                </li>
+                <li @click="changeColor('color3')">
+                    <img src="@/assets/black_circle.png" alt="Color 3" />
+                </li>
+                <li @click="changeColor('color4')">
+                    <img src="@/assets/red_circle.png" alt="Color 4" />
+                </li>
+            </ul>
+        </div>
 
-        <section class="product">
-            <div class="product__photo">
-                <div class="photo-container">
-                    <div class="photo-main">
-                        <img src="@/assets/green_sunglasses.png" alt="woman hat"/>
-                    </div>
-                <div class="photo-album">
-                    <ul>
-                        <li>
-                            <img src="@/assets/green_sunglasses.png" alt="green" />
-                        </li>
-                        <li>
-                            <img src="@/assets/yellow_sunglasses.png" alt="yellow" />
-                        </li>
-                        <li>
-                            <img src="@/assets/black_sunglasses.png" alt="black" />
-                        </li>
-                        <li>
-                            <img src="@/assets/red_sunglasses.png" alt="red" />
-                        </li>
-                    </ul>
-                </div>
-                </div>
-            </div>
-            <div class="product__info">
-                <div class="title">
-                    <h1>Sunglasses</h1>
-                    <span>COD: 455599</span>
-                </div>
-                <div class="price">
-                    <span>9.99$</span>
-                </div>
-                <div class="variant">
-                    <h3>SELECT A COLOR</h3>
-                    <ul>
-                        <li>
-                            <img src="@/assets/green_circle.png" alt="green" />
-                        </li>
-                        <li>
-                            <img src="@/assets/red_circle.png" alt="red" />
-                        </li>
-                        <li>
-                            <img src="@/assets/black_circle.png" alt="black" />
-                        </li>
-                        <li>
-                            <img src="@/assets/yellow_circle.png" alt="yellow" />
-                        </li>
-                    </ul>
-                </div>
-                <div class="description">
-                    <h3>BENEFITS</h3>
-                    <ul class="noPoint">
-                        <li>Apples may be good for weight loss</li>
-                        <li>Apples may be good for bone health</li>        
-                        <li>Apples may be good for weight loss</li>
-                        <li>Apples may be good for bone health</li>
-                    </ul>
-                </div>
-                <button class="buy--btn" @click="addToCart(product)">ADD TO CART</button>
-            </div>
-        </section>
-
-        <section class="product">
-            <div class="product__photo">
-                <div class="photo-container">
-                    <div class="photo-main">
-                        <img src="@/assets/yellow_watch.png" alt="woman hat"/>
-                    </div>
-                <div class="photo-album">
-                    <ul>
-                        <li>
-                            <img src="@/assets/green_watch.png" alt="green" />
-                        </li>
-                        <li>
-                            <img src="@/assets/yellow_watch.png" alt="yellow" />
-                        </li>
-                        <li>
-                            <img src="@/assets/black_watch.png" alt="black" />
-                        </li>
-                        <li>
-                            <img src="@/assets/red_watch.png" alt="red" />
-                        </li>
-                    </ul>
-                </div>
-                </div>
-            </div>
-            <div class="product__info">
-                <div class="title">
-                    <h1>Watches</h1>
-                    <span>COD: 77775599</span>
-                </div>
-                <div class="price">
-                    <span>19.99$</span>
-                </div>
-                <div class="variant">
-                    <h3>SELECT A COLOR</h3>
-                    <ul>
-                        <li>
-                            <img src="@/assets/green_circle.png" alt="green" />
-                        </li>
-                        <li>
-                            <img src="@/assets/red_circle.png" alt="red" />
-                        </li>
-                        <li>
-                            <img src="@/assets/black_circle.png" alt="black" />
-                        </li>
-                        <li>
-                            <img src="@/assets/yellow_circle.png" alt="yellow" />
-                        </li>
-                    </ul>
-                </div>
-                <div class="description">
-                    <h3>BENEFITS</h3>
-                    <ul class="noPoint">
-                        <li>Apples may be good for weight loss</li>
-                        <li>Apples may be good for bone health</li>        
-                        <li>Apples may be good for weight loss</li>
-                        <li>Apples may be good for bone health</li>
-                    </ul>
-                </div>
-                <button class="buy--btn" @click="addToCart(product)">ADD TO CART</button>
-            </div>
-        </section>
-
-        <section class="product">
-            <div class="product__photo">
-                <div class="photo-container">
-                    <div class="photo-main">
-                        <img src="@/assets/black_bracelet.png" alt="woman hat"/>
-                    </div>
-                <div class="photo-album">
-                    <ul>
-                        <li>
-                            <img src="@/assets/green_bracelet.png" alt="green" />
-                        </li>
-                        <li>
-                            <img src="@/assets/yellow_bracelet.png" alt="yellow" />
-                        </li>
-                        <li>
-                            <img src="@/assets/black_bracelet.png" alt="black" />
-                        </li>
-                        <li>
-                            <img src="@/assets/red_bracelet.png" alt="red" />
-                        </li>
-                    </ul>
-                </div>
-                </div>
-            </div>
-            <div class="product__info">
-                <div class="title">
-                    <h1>Bracelet</h1>
-                    <span>COD: 455599</span>
-                </div>
-                <div class="price">
-                    <span>9.99$</span>
-                </div>
-                <div class="variant">
-                    <h3>SELECT A COLOR</h3>
-                    <ul>
-                        <li>
-                            <img src="@/assets/green_circle.png" alt="green" />
-                        </li>
-                        <li>
-                            <img src="@/assets/red_circle.png" alt="red" />
-                        </li>
-                        <li>
-                            <img src="@/assets/black_circle.png" alt="black" />
-                        </li>
-                        <li>
-                            <img src="@/assets/yellow_circle.png" alt="yellow" />
-                        </li>
-                    </ul>
-                </div>
-                <div class="description">
-                    <h3>BENEFITS</h3>
-                    <ul class="noPoint">
-                        <li>Apples may be good for weight loss</li>
-                        <li>Apples may be good for bone health</li>        
-                        <li>Apples may be good for weight loss</li>
-                        <li>Apples may be good for bone health</li>
-                    </ul>
-                </div>
-                <button class="buy--btn" @click="addToCart(product)">ADD TO CART</button>
-            </div>
-        </section>
-
-        <section class="product">
-            <div class="product__photo">
-                <div class="photo-container">
-                    <div class="photo-main">
-                        <img src="@/assets/green_diamond.png" alt="woman hat"/>
-                    </div>
-                <div class="photo-album">
-                    <ul>
-                        <li>
-                            <img src="@/assets/green_diamond.png" alt="green" />
-                        </li>
-                        <li>
-                            <img src="@/assets/yellow_diamond.png" alt="yellow" />
-                        </li>
-                        <li>
-                            <img src="@/assets/black_diamond.png" alt="black" />
-                        </li>
-                        <li>
-                            <img src="@/assets/red_diamond.png" alt="red" />
-                        </li>
-                    </ul>
-                </div>
-                </div>
-            </div>
-            <div class="product__info">
-                <div class="title">
-                    <h1>Diamonds</h1>
-                    <span>COD: 455599</span>
-                </div>
-                <div class="price">
-                    <span>2220.00$</span>
-                </div>
-                <div class="variant">
-                    <h3>SELECT A COLOR</h3>
-                    <ul>
-                        <li>
-                            <img src="@/assets/green_circle.png" alt="green" />
-                        </li>
-                        <li>
-                            <img src="@/assets/red_circle.png" alt="red" />
-                        </li>
-                        <li>
-                            <img src="@/assets/black_circle.png" alt="black" />
-                        </li>
-                        <li>
-                            <img src="@/assets/yellow_circle.png" alt="yellow" />
-                        </li>
-                    </ul>
-                </div>
-                <div class="description">
-                    <h3>BENEFITS</h3>
-                    <ul class="noPoint">
-                        <li>Apples may be good for weight loss</li>
-                        <li>Apples may be good for bone health</li>        
-                        <li>Apples may be good for weight loss</li>
-                        <li>Apples may be good for bone health</li>
-                    </ul>
-                </div>
-                <button class="buy--btn" @click="addToCart(product)">ADD TO CART</button>
-            </div>
-        </section>
+        <div class="description">
+            <h3>BENEFITS</h3>
+            <ul class="noPoint">
+                <li>Apples may be good for weight loss</li>
+                <li>Apples may be good for bone health</li>        
+                <li>Apples may be good for weight loss</li>
+                <li>Apples may be good for bone health</li>
+            </ul>
+        </div>
+        <button class="buy--btn" @click="addToCart(selectedProduct)">ADD TO CART</button>
+    </div>
+</section>
 
     </div>
     <!-- Footer -->
@@ -385,35 +75,95 @@
 </template>
   
 <script>
-import { useRouter } from 'vue-router';
-
 export default {
-  name: "ProductCard", // ✅ Добавено име
-  setup() {
-    const router = useRouter();
-
-    const addToCart = (product) => {
-      let cart = JSON.parse(localStorage.getItem('cart')) || [];
-      cart.push(product);
-      localStorage.setItem('cart', JSON.stringify(cart));
-      router.push('/cart');
-    };
-
-    return { addToCart };
-  },
-  data() {
+    name: "ProductCard",
+    data() {
     return {
-      products: [
-        { id: 1, name: 'Laptop', price: 1200 },
-        { id: 2, name: 'Smartphone', price: 800 },
-        { id: 3, name: 'Headphones', price: 150 }
-      ]
+        selectedProduct: {
+            name: "T-Shirt",
+            price: 25,
+            image: require("@/assets/red_tshirt.png"),
+        },
+        products: [
+            {
+                id: 1,
+                category: "T-Shirts",
+                items: [
+                    { color: "red", price: 25, image: require('@/assets/red_tshirt.png') },
+                    { color: "yellow", price: 25, image: require('@/assets/yellow_tshirt.png') },
+                    { color: "yellow", price: 25, image: require('@/assets/black_tshirt.png') },
+                    { color: "green", price: 25, image: require('@/assets/green_tshirt.png') }
+                ]
+            },
+            {
+                id: 2,
+                category: "Sunglasses",
+                items: [
+                    { color: "red", price: 15, image: require('@/assets/red_sunglasses.png') },
+                    { color: "yellow", price: 15, image: require('@/assets/yellow_sunglasses.png') },
+                    { color: "yellow", price: 15, image: require('@/assets/black_sunglasses.png') },
+                    { color: "green", price: 15, image: require('@/assets/green_sunglasses.png') }
+                ]
+            },
+            {
+                id: 3,
+                category: "Hats",
+                items: [
+                    { color: "red", price: 100, image: require('@/assets/hat_1.png') },
+                    { color: "yellow", price: 100, image: require('@/assets/hat_2.png') },
+                    { color: "green", price: 100, image: require('@/assets/hat_3.png') }
+                ]
+            },
+            {
+                id: 4,
+                category: "Watches",
+                items: [
+                    { color: "red", price: 50, image: require('@/assets/red_watch.png') },
+                    { color: "yellow", price: 50, image: require('@/assets/yellow_watch.png') },
+                    { color: "green", price: 50, image: require('@/assets/green_watch.png') }
+                ]
+            },
+            {
+                id: 5,
+                category: "Diamonds",
+                items: [
+                    { color: "red", price: 100, image: require('@/assets/red_diamond.png') },
+                    { color: "yellow", price: 100, image: require('@/assets/yellow_diamond.png') },
+                    { color: "green", price: 100, image: require('@/assets/green_diamond.png') }
+                ]
+            }
+        ]
     };
+},
+
+  methods: {
+    selectProduct(product) {
+      this.selectedProduct = product; // Запазва избрания продукт
+    },
+    changeColor(color) {
+      // Променяме изображението на избрания продукт в зависимост от цвета
+      const productType = this.selectedProduct.name.toLowerCase(); // Получаваме типа на продукта (например, 'diamonds' или 'watches')
+      this.selectedProduct.image = require(`@/assets/${color.name.toLowerCase()}_${productType}.png`);
+    },
+    addToCart(product) {
+      if (!product || !product.name || !product.price) {
+        console.error("Продуктът е невалиден!");
+        return;
+      }
+
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.push({
+        id: product.id || Date.now(),
+        name: product.name,
+        price: product.price
+      });
+
+      localStorage.setItem('cart', JSON.stringify(cart));
+      this.$router.push('/cart');
+    }
   }
 };
 </script>
-
-  
 
 <style scoped>
 

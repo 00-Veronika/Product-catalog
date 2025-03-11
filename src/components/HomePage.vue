@@ -142,7 +142,7 @@ export default {
 
 .carousel {
   width: 100%;
-  height: 300px;
+  height: 100px;
   position: relative;
 }
 
