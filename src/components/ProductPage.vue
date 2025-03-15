@@ -1,177 +1,332 @@
-<template>    
-<!-- Заглавие -->
-    <header class="header">
-        <h1>Продуктов каталог</h1>
-    </header>
+<script setup>
+import router from "@/router";
+import { ref } from "vue";
 
-    <div class="product-grid">
-        
-        <section v-for="n in 6" :key="n" class="product">
-    <div class="product__photo">
+const cartItems = ref(0);
+const isEmpty = ref(true);
+const products = ref([]);
+
+products.value = [
+  {
+    category: "T-Shirts",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi porta velit augue, et fermentum lectus fermentum ut. Pellentesque hendrerit nunc eu pellentesque auctor. Donec placerat porta tellus, tempor suscipit nulla aliquet quis. In et turpis consequat, feugiat lorem nec, congue neque. Sed elit metus, auctor at elementum eget, facilisis ut nibh. Duis mattis diam nec fringilla consectetur. Aliquam condimentum neque vel magna sodales, pharetra tempor sem ornare. Praesent scelerisque quam porttitor commodo ullamcorper.",
+    items: [
+      {
+        id: 100,
+        name: "Red T-shirt",
+        color: "red",
+        price: 25,
+        image: require("@/assets/red_tshirt.png"),
+      },
+      {
+        id: 101,
+        name: "Yellow T-shirt",
+        color: "yellow",
+        price: 26,
+        image: require("@/assets/yellow_tshirt.png"),
+      },
+      {
+        id: 102,
+        name: "Black T-shirt",
+        color: "black",
+        price: 27,
+        image: require("@/assets/black_tshirt.png"),
+      },
+      {
+        id: 103,
+        name: "Green T-shirt",
+        color: "green",
+        price: 28,
+        image: require("@/assets/green_tshirt.png"),
+      },
+    ],
+    selected: null,
+  },
+  {
+    category: "Sunglasses",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi porta velit augue, et fermentum lectus fermentum ut. Pellentesque hendrerit nunc eu pellentesque auctor. Donec placerat porta tellus, tempor suscipit nulla aliquet quis. In et turpis consequat, feugiat lorem nec, congue neque. Sed elit metus, auctor at elementum eget, facilisis ut nibh. Duis mattis diam nec fringilla consectetur. Aliquam condimentum neque vel magna sodales, pharetra tempor sem ornare. Praesent scelerisque quam porttitor commodo ullamcorper.",
+    items: [
+      {
+        id: 200,
+        name: "Red Sunglasses",
+        color: "red",
+        price: 15,
+        image: require("@/assets/red_sunglasses.png"),
+      },
+      {
+        id: 201,
+        name: "Yellow Sunglasses",
+        color: "yellow",
+        price: 16,
+        image: require("@/assets/yellow_sunglasses.png"),
+      },
+      {
+        id: 202,
+        name: "Black Sunglasses",
+        color: "black",
+        price: 17,
+        image: require("@/assets/black_sunglasses.png"),
+      },
+      {
+        id: 203,
+        name: "Green Sunglasses",
+        color: "green",
+        price: 18,
+        image: require("@/assets/green_sunglasses.png"),
+      },
+    ],
+    selected: null,
+  },
+  {
+    category: "Hats",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi porta velit augue, et fermentum lectus fermentum ut. Pellentesque hendrerit nunc eu pellentesque auctor. Donec placerat porta tellus, tempor suscipit nulla aliquet quis. In et turpis consequat, feugiat lorem nec, congue neque. Sed elit metus, auctor at elementum eget, facilisis ut nibh. Duis mattis diam nec fringilla consectetur. Aliquam condimentum neque vel magna sodales, pharetra tempor sem ornare. Praesent scelerisque quam porttitor commodo ullamcorper.",
+    items: [
+      {
+        id: 300,
+        name: "Red Hat",
+        color: "red",
+        price: 100,
+        image: require("@/assets/hat_1.png"),
+      },
+      {
+        id: 301,
+        name: "Yellow Hat",
+        color: "yellow",
+        price: 101,
+        image: require("@/assets/hat_2.png"),
+      },
+      {
+        id: 302,
+        name: "Green Hat",
+        color: "green",
+        price: 102,
+        image: require("@/assets/hat_3.png"),
+      },
+      {
+        id: 303,
+        name: "Black Hat",
+        color: "black",
+        price: 103,
+        image: require("@/assets/hat_4.png"),
+      },
+    ],
+    selected: null,
+  },
+  {
+    category: "Watches",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi porta velit augue, et fermentum lectus fermentum ut. Pellentesque hendrerit nunc eu pellentesque auctor. Donec placerat porta tellus, tempor suscipit nulla aliquet quis. In et turpis consequat, feugiat lorem nec, congue neque. Sed elit metus, auctor at elementum eget, facilisis ut nibh. Duis mattis diam nec fringilla consectetur. Aliquam condimentum neque vel magna sodales, pharetra tempor sem ornare. Praesent scelerisque quam porttitor commodo ullamcorper.",
+    items: [
+      {
+        id: 400,
+        name: "Red Watch",
+        color: "red",
+        price: 50,
+        image: require("@/assets/red_watch.png"),
+      },
+      {
+        id: 401,
+        name: "Yellow Watch",
+        color: "yellow",
+        price: 51,
+        image: require("@/assets/yellow_watch.png"),
+      },
+      {
+        id: 402,
+        name: "Green Watch",
+        color: "green",
+        price: 52,
+        image: require("@/assets/green_watch.png"),
+      },
+      {
+        id: 403,
+        name: "Black Watch",
+        color: "black",
+        price: 53,
+        image: require("@/assets/black_watch.png"),
+      },
+    ],
+    selected: null,
+  },
+  {
+    category: "Diamonds",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi porta velit augue, et fermentum lectus fermentum ut. Pellentesque hendrerit nunc eu pellentesque auctor. Donec placerat porta tellus, tempor suscipit nulla aliquet quis. In et turpis consequat, feugiat lorem nec, congue neque. Sed elit metus, auctor at elementum eget, facilisis ut nibh. Duis mattis diam nec fringilla consectetur. Aliquam condimentum neque vel magna sodales, pharetra tempor sem ornare. Praesent scelerisque quam porttitor commodo ullamcorper.",
+    items: [
+      {
+        id: 500,
+        name: "Red Diamond",
+        color: "red",
+        price: 1000,
+        image: require("@/assets/red_diamond.png"),
+      },
+      {
+        id: 501,
+        name: "Yellow Diamond",
+        color: "yellow",
+        price: 1020,
+        image: require("@/assets/yellow_diamond.png"),
+      },
+      {
+        id: 502,
+        name: "Green Diamond",
+        color: "green",
+        price: 1030,
+        image: require("@/assets/green_diamond.png"),
+      },
+      {
+        id: 503,
+        name: "Black Diamond",
+        color: "black",
+        price: 1040,
+        image: require("@/assets/black_diamond.png"),
+      },
+    ],
+    selected: null,
+  },
+];
+
+function selectProduct(product, index) {
+  console.log("product", product);
+  console.log("this", this);
+  console.log("products", products);
+  console.log("index", index);
+
+  products.value[index].selected = product;
+}
+
+function addToCart(product) {
+  console.log("product", product);
+
+  if (!product || !product.name || !product.price) {
+    console.error("Продуктът е невалиден!");
+    return;
+  }
+
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  cart.push({
+    id: product.id,
+    name: product.name,
+    price: product.price,
+    image: product.image,
+  });
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+  cartItems.value++;
+  setCartCount();
+}
+
+function handleClick() {
+  router.replace("/cart");
+}
+
+function setCartCount() {
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const count = cart?.length ?? 0;
+  const empty = count === 0;
+
+  cartItems.value = count;
+  isEmpty.value = empty;
+}
+</script>
+
+<template>
+  <!-- Заглавие -->
+  <header class="header">
+    <h1>Продуктов каталог</h1>
+  </header>
+
+  <div class="product-grid">
+    <section v-for="(product, index) in products" :key="index" class="product">
+      <div class="product__photo">
         <div class="photo-container">
-            <div class="photo-main">
-                <img :src="selectedProduct.image" alt="product image"/>
-            </div>
-            <div class="photo-album">
+          <div class="photo-main">
+            <img
+              :src="product.selected?.image ?? product.items[0]?.image"
+              alt="product image"
+            />
+          </div>
+          <div class="photo-album">
+            <ul>
+              <li>
+                <h3>{{ product.category }}</h3>
                 <ul>
-                    <li v-for="(product, index) in products" :key="index">
-                        <h3>{{ product.category }}</h3>
-                        <ul>
-                        <li v-for="(item, idx) in product.items" :key="idx">
-                            <img :src="item.image" :alt="item.color + ' ' + product.category" @click="selectProduct(item)" />
-                            <p>{{ item.color }} - ${{ item.price }}</p>
-                        </li>
-                        </ul>
-                    </li>
+                  <li v-for="(item, idx) in product.items" :key="idx">
+                    <img
+                      :src="item.image"
+                      :alt="item.color + ' ' + product.category"
+                      @click="selectProduct(item, index)"
+                    />
+                  </li>
                 </ul>
-            </div>
+              </li>
+            </ul>
+          </div>
         </div>
-    </div>
-    <div class="product__info">
+      </div>
+      <div class="product__info">
         <div class="title">
-            <h1>{{ selectedProduct.name }}</h1>
-            <span>COD: 457777799</span>
+          <h1>{{ product.selected?.name ?? product.items[0]?.name }}</h1>
+          <span>COD: 457777799</span>
         </div>
         <div class="price">
-            <span>{{ selectedProduct.price }} $</span>
-        </div>
-
-        <div class="variant">
-            <h3>SELECT A COLOR</h3>
-            <ul class="color-options">
-                <li @click="changeColor('color1')">
-                    <img src="@/assets/yellow_circle.png" alt="Color 1" />
-                </li>
-                <li @click="changeColor('color2')">
-                    <img src="@/assets/green_circle.png" alt="Color 2" />
-                </li>
-                <li @click="changeColor('color3')">
-                    <img src="@/assets/black_circle.png" alt="Color 3" />
-                </li>
-                <li @click="changeColor('color4')">
-                    <img src="@/assets/red_circle.png" alt="Color 4" />
-                </li>
-            </ul>
+          <span
+            >{{ product.selected?.price ?? product.items[0]?.price }} $</span
+          >
         </div>
 
         <div class="description">
-            <h3>BENEFITS</h3>
-            <ul class="noPoint">
-                <li>Apples may be good for weight loss</li>
-                <li>Apples may be good for bone health</li>        
-                <li>Apples may be good for weight loss</li>
-                <li>Apples may be good for bone health</li>
-            </ul>
+          <h3>BENEFITS</h3>
+          <ul class="noPoint">
+            <li>{{ product.description }}</li>
+          </ul>
         </div>
-        <button class="buy--btn" @click="addToCart(selectedProduct)">ADD TO CART</button>
-    </div>
-</section>
-
-    </div>
-    <!-- Footer -->
-    <footer class="footer">
-        <p>Изготвено от Вероника Пенева - 2101681046</p>
-    </footer>
+        <button
+          class="buy--btn"
+          @click="addToCart(product.selected ?? product.items[0])"
+        >
+          ADD TO CART
+        </button>
+      </div>
+    </section>
+  </div>
+  <div v-if="!isEmpty" class="cart-button" @click="handleClick">
+   🧺 Cart ({{ cartItems }}) 
+  </div>
+  <!-- Footer -->
+  <footer class="footer">
+    <p>Изготвено от Вероника Пенева - 2101681046</p>
+  </footer>
 </template>
-  
-<script>
-export default {
-    name: "ProductCard",
-    data() {
-    return {
-        selectedProduct: {
-            name: "T-Shirt",
-            price: 25,
-            image: require("@/assets/red_tshirt.png"),
-        },
-        products: [
-            {
-                id: 1,
-                category: "T-Shirts",
-                items: [
-                    { color: "red", price: 25, image: require('@/assets/red_tshirt.png') },
-                    { color: "yellow", price: 25, image: require('@/assets/yellow_tshirt.png') },
-                    { color: "yellow", price: 25, image: require('@/assets/black_tshirt.png') },
-                    { color: "green", price: 25, image: require('@/assets/green_tshirt.png') }
-                ]
-            },
-            {
-                id: 2,
-                category: "Sunglasses",
-                items: [
-                    { color: "red", price: 15, image: require('@/assets/red_sunglasses.png') },
-                    { color: "yellow", price: 15, image: require('@/assets/yellow_sunglasses.png') },
-                    { color: "yellow", price: 15, image: require('@/assets/black_sunglasses.png') },
-                    { color: "green", price: 15, image: require('@/assets/green_sunglasses.png') }
-                ]
-            },
-            {
-                id: 3,
-                category: "Hats",
-                items: [
-                    { color: "red", price: 100, image: require('@/assets/hat_1.png') },
-                    { color: "yellow", price: 100, image: require('@/assets/hat_2.png') },
-                    { color: "green", price: 100, image: require('@/assets/hat_3.png') }
-                ]
-            },
-            {
-                id: 4,
-                category: "Watches",
-                items: [
-                    { color: "red", price: 50, image: require('@/assets/red_watch.png') },
-                    { color: "yellow", price: 50, image: require('@/assets/yellow_watch.png') },
-                    { color: "green", price: 50, image: require('@/assets/green_watch.png') }
-                ]
-            },
-            {
-                id: 5,
-                category: "Diamonds",
-                items: [
-                    { color: "red", price: 100, image: require('@/assets/red_diamond.png') },
-                    { color: "yellow", price: 100, image: require('@/assets/yellow_diamond.png') },
-                    { color: "green", price: 100, image: require('@/assets/green_diamond.png') }
-                ]
-            }
-        ]
-    };
-},
-
-  methods: {
-    selectProduct(product) {
-      this.selectedProduct = product; // Запазва избрания продукт
-    },
-    changeColor(color) {
-      // Променяме изображението на избрания продукт в зависимост от цвета
-      const productType = this.selectedProduct.name.toLowerCase(); // Получаваме типа на продукта (например, 'diamonds' или 'watches')
-      this.selectedProduct.image = require(`@/assets/${color.name.toLowerCase()}_${productType}.png`);
-    },
-    addToCart(product) {
-      if (!product || !product.name || !product.price) {
-        console.error("Продуктът е невалиден!");
-        return;
-      }
-
-      let cart = JSON.parse(localStorage.getItem('cart')) || [];
-      cart.push({
-        id: product.id || Date.now(),
-        name: product.name,
-        price: product.price
-      });
-
-      localStorage.setItem('cart', JSON.stringify(cart));
-      this.$router.push('/cart');
-    }
-  }
-};
-</script>
 
 <style scoped>
+.cart-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #2d844e;
+  color: white;
+  padding: 12px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.cart-button:hover {
+  background-color: #58cb4b;
+  transform: scale(1.05);
+}
 
 /* Контейнер за продукти */
 .product-grid {
   display: grid;
   gap: 20px;
-  grid-template-columns: repeat(3, 1fr);  /* 4 колони */
+  grid-template-columns: repeat(3, 1fr); /* 4 колони */
   margin-bottom: 20px;
 }
 
@@ -310,27 +465,27 @@ export default {
 }
 
 .variant {
-    text-align: center; 
+  text-align: center;
 }
 
 .variant ul {
-    list-style-type: none; 
-    padding: 0;
-    margin: 0;
-    display: flex; 
-    justify-content: center;
-    gap: 10px; 
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
 }
 
 .variant ul li img {
-    width: 40px; 
-    height: 40px;
-    object-fit: cover; 
-    border-radius: 50%; 
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 .variant ul li img:hover {
-    transform: scale(1.1); 
+  transform: scale(1.1);
 }
 
 .buy--btn {
@@ -368,7 +523,7 @@ export default {
 
   .photo-main img {
     width: 100%;
-    max-width: 250px; 
+    max-width: 250px;
     height: auto;
   }
 
@@ -425,4 +580,3 @@ export default {
   }
 }
 </style>
-  
