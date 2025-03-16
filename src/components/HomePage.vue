@@ -57,55 +57,7 @@
       </div>
     </section>
 
-    <!-- Доволни клиенти (картинки) -->
-    <section class="happy-customers">
-      <h2>Доволни клиенти</h2>
-      <div class="customer-images">
-        <img src="@/assets/pngwing.com (3).png" alt="Клиент 1" />
-        <img src="@/assets/pngwing.com (3).png" alt="Клиент 2" />
-        <img src="@/assets/pngwing.com (3).png" alt="Клиент 3" />
-      </div>
-    </section>
-
-    <!-- Отзиви -->
-    <section class="customer-reviews">
-      <h2>Какво казват нашите клиенти</h2>
-      <div class="reviews">
-        <div class="review">
-          <p>"Прекрасен продукт! Силно препоръчвам."</p>
-          <div class="stars">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star-half-alt"></i>
-          </div>
-          <p>- Иван Иванов</p>
-        </div>
-        <div class="review">
-          <p>"Изключително доволен съм от качеството на продукта и бързата доставка!"</p>
-          <div class="stars">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-          </div>
-          <p>- Мария Петрова</p>
-        </div>
-        <div class="review">
-          <p>"Отлично обслужване и качество. Ще пазарувам отново!"</p>
-          <div class="stars">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star-half-alt"></i>
-          </div>
-          <p>- Георги Георгиев</p>
-        </div>
-      </div>
-    </section>
+  
 
     <!-- Контакти -->
     <section class="contact">
@@ -246,36 +198,6 @@ export default {
   object-fit: cover;
 }
 
-.customer-reviews {
-  text-align: center;
-  padding: 30px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-bottom: 40px;
-}
-
-.customer-reviews h2 {
-  font-size: 2.5em;
-  color: #333;
-  margin-bottom: 20px;
-}
-
-.reviews {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.review p {
-  font-size: 1.2em;
-  color: #555;
-}
-
-.stars i {
-  color: #FFD700;
-  margin-right: 5px;
-}
 
 .contact {
   text-align: center;

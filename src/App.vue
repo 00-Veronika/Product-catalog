@@ -3,8 +3,8 @@
     <nav>
       <RouterLink to="/">Home</RouterLink>
       <RouterLink to="/product">Product</RouterLink>
+      <RouterLink to="/client">Our Client</RouterLink>
       <RouterLink to="/profile">Profile</RouterLink>
-      <RouterLink to="/newProducts">New products</RouterLink>
       <RouterLink to="/cart">Cart</RouterLink>
     </nav>
     <RouterView />
